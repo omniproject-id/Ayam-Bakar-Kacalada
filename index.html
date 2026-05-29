@@ -1,0 +1,2031 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayam Bakar Kacalada 🔥 - Modern Premium Restaurant</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- DESIGN SYSTEM & SYSTEM VARIABLES --- */
+        :root {
+            --primary: #e63946;
+            --secondary: #ff7b00;
+            --dark: #111111;
+            --dark-accent: #1a1a1a;
+            --light: #ffffff;
+            --gray-text: #aaaaaa;
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --bg-glass: rgba(17, 17, 17, 0.75);
+            --radius: 16px;
+            --transition-smooth: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* --- BASIC RESET & TYPOGRAPHY --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- PRELOADER ANIMATION --- */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--dark);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        .loader-wrapper {
+            text-align: center;
+        }
+
+        .loader-logo {
+            font-size: 3rem;
+            color: var(--primary);
+            animation: flamePulse 1.5s infinite ease-in-out;
+            margin-bottom: 20px;
+        }
+
+        .loader-bar {
+            width: 160px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loader-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            animation: loadingProgress 1.5s infinite ease-in-out;
+        }
+
+        @keyframes flamePulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; filter: drop-shadow(0 0 5px var(--primary)); }
+            50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 20px var(--secondary)); }
+        }
+
+        @keyframes loadingProgress {
+            0% { left: -50%; }
+            100% { left: 100%; }
+        }
+
+        /* --- SCROLL REVEAL UTILITY --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- BUTTONS & MICRO-INTERACTIONS --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light);
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(230, 57, 70, 0.6), 0 0 10px var(--secondary);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.07);
+            color: var(--light);
+            border: 1px solid var(--border-glass);
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-secondary:hover {
+            background: var(--light);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        .btn-whatsapp {
+            background: #25d366;
+            color: var(--light);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+        }
+
+        /* --- GLASSMORPHISM NAVBAR --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 24px 0;
+            transition: var(--transition-smooth);
+        }
+
+        .navbar.scrolled {
+            padding: 14px 0;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-link {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--gray-text);
+            padding: 8px 14px;
+            border-radius: 20px;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--light);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+        }
+
+        /* --- GENERAL SECTIONS STYLE --- */
+        section {
+            padding: 100px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-tag {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2.3rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        /* --- HERO SECTION --- */
+        #home {
+            max-width: 100%;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(rgba(17,17,17,0.4), rgba(17,17,17,0.85)), 
+                        url('food-1.jpg') no-repeat center center/cover;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-title span {
+            display: block;
+            color: var(--primary);
+            min-height: 80px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray-text);
+            line-height: 1.7;
+            margin-bottom: 35px;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            color: var(--gray-text);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .scroll-indicator i {
+            font-size: 1.1rem;
+            animation: bounceIndicator 2s infinite;
+        }
+
+        @keyframes bounceIndicator {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+
+        /* --- TENTANG (ABOUT) --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-img-box {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        .about-img-box img {
+            width: 100%;
+            height: 440px;
+            transition: var(--transition-smooth);
+        }
+
+        .about-img-box:hover img {
+            transform: scale(1.04);
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .about-text p {
+            color: var(--gray-text);
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .counter-card {
+            background: var(--dark-accent);
+            border: 1px solid var(--border-glass);
+            padding: 20px 10px;
+            border-radius: var(--radius);
+            text-align: center;
+            transition: var(--transition-smooth);
+        }
+
+        .counter-card:hover {
+            border-color: rgba(255, 123, 0, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .counter-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .counter-label {
+            font-size: 0.75rem;
+            color: var(--gray-text);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- KEUNGGULAN (FEATURES) --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: var(--dark-accent);
+            border: 1px solid var(--border-glass);
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 20px rgba(230, 57, 70, 0.15);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .feature-icon {
+            width: 55px;
+            height: 55px;
+            background: rgba(255, 123, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--secondary);
+            margin-bottom: 25px;
+            transition: var(--transition-smooth);
+        }
+
+        .feature-card:hover .feature-icon {
+            background: var(--primary);
+            color: var(--light);
+            transform: rotateY(360deg);
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* --- MENU SECTION (2 ITEMS) --- */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .menu-card {
+            background: var(--dark-accent);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .menu-img-holder {
+            position: relative;
+            height: 320px;
+            overflow: hidden;
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 100%;
+            transition: var(--transition-smooth);
+        }
+
+        .menu-overlay-info {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(17,17,17,0.95) 25%, rgba(17,17,17,0.1));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            opacity: 0.95;
+            transition: var(--transition-smooth);
+        }
+
+        .menu-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .menu-card:hover .menu-overlay-info {
+            background: linear-gradient(to top, var(--dark) 35%, rgba(230, 57, 70, 0.2));
+        }
+
+        .menu-overlay-info h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .menu-overlay-info .price-tag {
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 1.15rem;
+        }
+
+        .menu-click-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(17,17,17,0.6);
+            border: 1px solid var(--border-glass);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            backdrop-filter: blur(5px);
+            color: var(--gray-text);
+        }
+
+        /* --- GALLERY SECTION (4 ITEMS) --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-card {
+            position: relative;
+            height: 250px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            transition: var(--transition-smooth);
+        }
+
+        .gallery-hover-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(230, 57, 70, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .gallery-hover-effect i {
+            font-size: 2rem;
+            color: var(--light);
+            transform: scale(0.6);
+            transition: var(--transition-smooth);
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-card:hover .gallery-hover-effect {
+            opacity: 1;
+        }
+
+        .gallery-card:hover .gallery-hover-effect i {
+            transform: scale(1);
+        }
+
+        /* --- REVIEW SECTION (SLIDER) --- */
+        .review-carousel-box {
+            max-width: 720px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .review-slider-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .review-slide-node {
+            min-width: 100%;
+            padding: 0 10px;
+        }
+
+        .review-bubble {
+            background: var(--dark-accent);
+            border: 1px solid var(--border-glass);
+            padding: 40px;
+            border-radius: var(--radius);
+            text-align: center;
+            position: relative;
+        }
+
+        .review-stars {
+            color: #ffcc00;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .review-bubble p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            font-style: italic;
+            color: #dddddd;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .review-client {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .review-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 35px;
+        }
+
+        .nav-arrow {
+            background: var(--dark-accent);
+            border: 1px solid var(--border-glass);
+            color: var(--light);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-arrow:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .bullet-indicators {
+            display: flex;
+            gap: 8px;
+        }
+
+        .bullet {
+            width: 8px;
+            height: 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .bullet.active {
+            background: var(--primary);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* --- FAQ SECTION (ACCORDION) --- */
+        .faq-accordion-holder {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-node {
+            background: var(--dark-accent);
+            border: 1px solid var(--border-glass);
+            margin-bottom: 15px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .faq-trigger {
+            padding: 22px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .faq-trigger h3 {
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+
+        .faq-chevron {
+            font-size: 0.9rem;
+            transition: transform 0.4s ease;
+            color: var(--secondary);
+        }
+
+        .faq-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            padding: 0 30px;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-panel p {
+            padding-bottom: 22px;
+            color: var(--gray-text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .faq-node.open {
+            border-color: rgba(230, 57, 70, 0.2);
+        }
+
+        .faq-node.open .faq-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* --- LOKASI SECTION --- */
+        .location-block {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            background: var(--dark-accent);
+            border: 1px solid var(--border-glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .map-iframe-holder {
+            border-radius: calc(var(--radius) - 4px);
+            overflow: hidden;
+            height: 360px;
+            border: 1px solid var(--border-glass);
+        }
+
+        .map-iframe-holder iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: grayscale(0.8) invert(0.9) contrast(1.2);
+        }
+
+        .location-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .location-details h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .address-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .address-item i {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-top: 4px;
+        }
+
+        .address-item p {
+            color: var(--gray-text);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .location-action-btns {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        /* --- KONTAK SECTION --- */
+        .contact-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .contact-box-card {
+            background: var(--dark-accent);
+            border: 1px solid var(--border-glass);
+            padding: 35px 20px;
+            border-radius: var(--radius);
+            text-align: center;
+            transition: var(--transition-smooth);
+        }
+
+        .contact-box-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(230, 57, 70, 0.3);
+        }
+
+        .contact-box-card i {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .contact-box-card h3 {
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+        }
+
+        .contact-box-card p {
+            font-size: 0.85rem;
+            color: var(--gray-text);
+            line-height: 1.5;
+        }
+
+        .social-dock {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .social-icon-btn {
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+        }
+
+        .social-icon-btn:hover {
+            background: var(--primary);
+            transform: scale(1.1);
+        }
+
+        /* --- FLOATING CONTROLS & FAB --- */
+        .floating-triggers {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 998;
+        }
+
+        .fab-trigger {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 1.3rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            transition: var(--transition-smooth);
+            border: none;
+        }
+
+        .fab-wa {
+            background: #25d366;
+        }
+
+        .fab-wa:hover {
+            transform: scale(1.1) rotate(8deg);
+        }
+
+        .fab-top {
+            background: var(--dark-accent);
+            border: 1px solid var(--border-glass);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+        }
+
+        .fab-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .fab-top:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* --- AI CHAT ASSISTANT UI --- */
+        .ai-chat-container {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 999;
+        }
+
+        .ai-chat-bubble-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #007bb5, var(--primary));
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0,123,181,0.4);
+            transition: var(--transition-smooth);
+            border: none;
+            position: relative;
+        }
+
+        .ai-chat-bubble-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .ai-chat-box {
+            position: absolute;
+            bottom: 70px;
+            left: 0;
+            width: 320px;
+            height: 420px;
+            background: #181818;
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.95);
+            transition: var(--transition-smooth);
+            transform-origin: bottom left;
+        }
+
+        .ai-chat-box.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .ai-chat-header {
+            background: linear-gradient(135deg, var(--dark-accent), #222);
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-glass);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ai-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ai-avatar {
+            width: 30px;
+            height: 30px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+        }
+
+        .ai-name h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .ai-status {
+            font-size: 0.7rem;
+            color: #25d366;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .ai-close-btn {
+            background: none;
+            border: none;
+            color: var(--gray-text);
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .ai-chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chat-msg {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 14px;
+            font-size: 0.82rem;
+            line-height: 1.4;
+        }
+
+        .chat-msg.bot {
+            background: var(--dark-accent);
+            color: #e0e0e0;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            border: 1px solid var(--border-glass);
+        }
+
+        .chat-msg.user {
+            background: var(--primary);
+            color: var(--light);
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .ai-chat-input-area {
+            padding: 12px;
+            border-top: 1px solid var(--border-glass);
+            background: #121212;
+            display: flex;
+            gap: 8px;
+        }
+
+        .ai-chat-input-area input {
+            flex: 1;
+            background: var(--dark-accent);
+            border: 1px solid var(--border-glass);
+            padding: 10px 14px;
+            border-radius: 20px;
+            color: var(--light);
+            font-size: 0.82rem;
+            outline: none;
+        }
+
+        .ai-chat-send-btn {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            border: none;
+            border-radius: 50%;
+            color: var(--light);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+        }
+
+        .ai-chat-send-btn:hover {
+            background: var(--secondary);
+        }
+
+        /* --- MODAL WINDOW POPUP --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-smooth);
+            padding: 20px;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-window {
+            background: var(--dark-accent);
+            border: 1px solid var(--border-glass);
+            max-width: 500px;
+            width: 100%;
+            border-radius: var(--radius);
+            overflow: hidden;
+            position: relative;
+            transform: scale(0.85);
+            transition: var(--transition-smooth);
+        }
+
+        .modal-overlay.open .modal-window {
+            transform: scale(1);
+        }
+
+        .modal-close-trigger {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.5);
+            border: none;
+            color: var(--light);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+        }
+
+        .modal-img {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .modal-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .modal-price {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .modal-desc {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        /* --- LIGHTBOX SYSTEM --- */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .lightbox-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 80%;
+            object-fit: contain;
+            border-radius: 6px;
+            transform: scale(0.9);
+            transition: var(--transition-smooth);
+        }
+
+        .lightbox-overlay.open .lightbox-img {
+            transform: scale(1);
+        }
+
+        /* --- MODERN DARK FOOTER --- */
+        footer {
+            background: #090909;
+            padding: 60px 24px 30px 24px;
+            border-top: 1px solid var(--border-glass);
+        }
+
+        .footer-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav a {
+            font-size: 0.85rem;
+            color: var(--gray-text);
+            transition: var(--transition-smooth);
+        }
+
+        .footer-nav a:hover {
+            color: var(--light);
+        }
+
+        .footer-copy {
+            text-align: center;
+            font-size: 0.78rem;
+            color: #555555;
+            margin-top: 25px;
+        }
+
+        /* --- RESPONSIFITAS / RESPONSIVE BREAKPOINTS --- */
+        @media (max-width: 992px) {
+            .about-grid, .location-block {
+                grid-template-columns: 1fr;
+            }
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .gallery-grid, .contact-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 70px 20px;
+            }
+            .hamburger {
+                display: block;
+            }
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 270px;
+                height: 100vh;
+                background: #151515;
+                flex-direction: column;
+                padding: 100px 30px;
+                transition: var(--transition-smooth);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.6);
+                border-left: 1px solid var(--border-glass);
+            }
+            .nav-menu.open {
+                right: 0;
+            }
+            .nav-link {
+                display: block;
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+            .hero-title {
+                font-size: 2.3rem;
+            }
+            .menu-grid, .features-grid, .gallery-grid, .contact-row {
+                grid-template-columns: 1fr;
+            }
+            .map-iframe-holder {
+                height: 260px;
+            }
+            .ai-chat-container {
+                left: auto;
+                right: 30px;
+                bottom: 100px;
+            }
+            .ai-chat-box {
+                left: auto;
+                right: 0;
+                transform-origin: bottom right;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. PRELOADER -->
+    <div id="preloader">
+        <div class="loader-wrapper">
+            <div class="loader-logo"><i class="fas fa-fire"></i></div>
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
+    <!-- 2. NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <img src="logo ayam.jpg" alt="Logo Kacalada">
+                AYAM BAKAR <span>KACALADA</span>
+            </a>
+            <button class="hamburger" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">Tentang</a></li>
+                <li><a href="#menu" class="nav-link">Menu</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#review" class="nav-link">Review</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+                <li><a href="#location" class="nav-link">Lokasi</a></li>
+                <li><a href="#contact" class="nav-link">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 3. HERO SECTION -->
+    <section id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">AYAM BAKAR <span id="type-target"></span></h1>
+                <p class="hero-subtitle">Ayam bakar khas Karawang dengan paduan sempurna bumbu manis gurih meresap hulu dan sambal jeletot pedas legendaris. Kualitas rasa premium, harga bersahabat!</p>
+                <div class="hero-buttons">
+                    <a href="#menu" class="btn btn-primary">Lihat Menu <i class="fas fa-utensils"></i></a>
+                    <a href="https://wa.me/6282114775399" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Chat WhatsApp</a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll Down</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- 4. TENTANG (ABOUT) -->
+    <section id="about" class="reveal">
+        <div class="section-header">
+            <span class="section-tag">Authentic Taste</span>
+            <h2 class="section-title">Cita Rasa Rahasia Kacalada</h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-img-box">
+                <img src="ayam 5.jpg" alt="Suasana Restoran Ayam Bakar Kacalada">
+            </div>
+            <div class="about-text">
+                <h3>Sajian Otentik untuk Seluruh Anggota Keluarga</h3>
+                <p>Ayam Bakar Kacalada menyajikan racikan kuliner *Chicken Restaurant* bernuansa kekeluargaan di Karawang Barat. Menggunakan ayam segar pilihan yang diungkep bumbu kaya rempah, kemudian dibakar perlahan untuk menciptakan karamelisasi permukaan daging yang sempurna dan empuk.</p>
+                <p>Kami bangga mempertahankan dedikasi rasa tradisional, porsi melimpah yang mengenyangkan, serta komitmen harga terjangkau untuk menjamu momen makan bersama orang tercinta.</p>
+                
+                <div class="counter-grid">
+                    <div class="counter-card">
+                        <span class="counter-number" data-target="4.6">0</span>
+                        <span class="counter-label">⭐ Rating Google</span>
+                    </div>
+                    <div class="counter-card">
+                        <span class="counter-number" data-target="85">0</span>
+                        <span class="counter-label">± Ulasan</span>
+                    </div>
+                    <div class="counter-card">
+                        <span class="counter-number" data-target="32">0</span>
+                        <span class="counter-label">Harga Max (Rb)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. KEUNGGULAN -->
+    <section id="features" class="reveal">
+        <div class="section-header">
+            <span class="section-tag">Our Pride</span>
+            <h2 class="section-title">Mengapa Harus Kacalada?</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-drumstick-bite"></i></div>
+                <h3>Ayam Bakar Khas</h3>
+                <p>Kombinasi eksklusif rasa manis gurih meresap bumbu alami tradisional hingga ke serat daging terdalam.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-pepper-hot"></i></div>
+                <h3>Sambal Jeletot Pedas</h3>
+                <p>Ulekan cabai pilihan segar berkualitas tinggi yang menantang dan memanjakan lidah para pencinta pedas.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-tags"></i></div>
+                <h3>Harga Terjangkau</h3>
+                <p>Kelezatan berkelas yang ramah dompet. Aneka menu utama dapat dinikmati mulai dari Rp2.000 hingga Rp32.000.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-box"></i></div>
+                <h3>Porsi Cukup & Puas</h3>
+                <p>Sajian takaran pas mengenyangkan yang disesuaikan untuk kepuasan maksimal setiap pelanggan kami.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-users"></i></div>
+                <h3>Cocok Untuk Keluarga</h3>
+                <p>Atmosfer diner yang nyaman dan ramah untuk berkumpul makan besar bersama keluarga maupun rekan.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-calendar-check"></i></div>
+                <h3>Buka Setiap Hari</h3>
+                <p>Kami siap melayani kebutuhan kuliner Anda setiap hari mulai pukul 09.00 sampai dengan 23.00 WIB.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. MENU SECTION (2 ITEMS ONLY) -->
+    <section id="menu" class="reveal">
+        <div class="section-header">
+            <span class="section-tag">Signature Dishes</span>
+            <h2 class="section-title">Menu Utama Unggulan</h2>
+        </div>
+        <div class="menu-grid">
+            <!-- Menu 1 -->
+            <div class="menu-card" data-title="Ayam Bakar Kacalada" data-price="Rp24.000" data-desc="Ayam ungkep pilihan yang dibakar dengan olesan bumbu madu karamel manis pedas khas Kacalada. Disajikan lengkap dengan lalapan segar dan Sambal Jeletot rahasia." data-img="menu-1.jpg">
+                <div class="menu-img-holder">
+                    <span class="menu-click-badge"><i class="fas fa-expand-alt"></i> Detail</span>
+                    <img src="ayam 1.jfif" alt="Ayam Bakar Kacalada">
+                    <div class="menu-overlay-info">
+                    
+                    </div>
+                </div>
+            </div>
+            <!-- Menu 2 -->
+            <div class="menu-card" data-title="Ayam Geprek Sambal Jeletot" data-price="Rp20.000" data-desc="Ayam goreng renyah krispi golden brown yang dimemarkan langsung di atas cobek bersama siraman sambal jeletot super pedas nendang." data-img="menu-2.jpg">
+                <div class="menu-img-holder">
+                    <span class="menu-click-badge"><i class="fas fa-expand-alt"></i> Detail</span>
+                    <img src="ayam 2.jfif" alt="Ayam Geprek Sambal Jeletot">
+                    <div class="menu-overlay-info">
+                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. GALLERY SECTION (4 ITEMS) -->
+    <section id="gallery" class="reveal">
+        <div class="section-header">
+            <span class="section-tag">Visual Identity</span>
+            <h2 class="section-title">Galeri Foto Makanan</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-card">
+                <img src="ayam 7.jpg" alt="Galeri Restoran Kacalada 1">
+                <div class="gallery-hover-effect"><i class="fas fa-search-plus"></i></div>
+            </div>
+            <div class="gallery-card">
+                <img src="foto maknan 1.jpg" alt="Galeri Restoran Kacalada 2">
+                <div class="gallery-hover-effect"><i class="fas fa-search-plus"></i></div>
+            </div>
+            <div class="gallery-card">
+                <img src="foto makanan 2.jpeg" alt="Galeri Restoran Kacalada 3">
+                <div class="gallery-hover-effect"><i class="fas fa-search-plus"></i></div>
+            </div>
+            <div class="gallery-card">
+                <img src="foto maknanan 3.jfif" alt="Galeri Restoran Kacalada 4">
+                <div class="gallery-hover-effect"><i class="fas fa-search-plus"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. REVIEW SECTION (SLIDER) -->
+    <section id="review" class="reveal">
+        <div class="section-header">
+            <span class="section-tag">Customer Reviews</span>
+            <h2 class="section-title">Apa Kata Mereka?</h2>
+        </div>
+        <div class="review-carousel-box">
+            <div class="review-slider-track">
+                <!-- Slide 1 -->
+                <div class="review-slide-node">
+                    <div class="review-bubble">
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p>"Ayam bakarnya beneran meresap sampai ke serat terdalam. Dagingnya lembut dan manis gurihnya pas banget. Bikin nagih dan selalu repeat order di sini!"</p>
+                        <span class="review-client">Andika Pratama — Local Guide</span>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="review-slide-node">
+                    <div class="review-bubble">
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p>"Bagi penikmat pedas, sambal jeletotnya bener-bener mantap dan juara. Kombinasi ayam bakar manis dan sambal ekstra pedasnya luar biasa!"</p>
+                        <span class="review-client">Siti Rahma — Penikmat Kuliner</span>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="review-slide-node">
+                    <div class="review-bubble">
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p>"Harga menu sangat terjangkau untuk kualitas rasa restoran premium. Porsi nasi dan potongan ayamnya pas mengenyangkan."</p>
+                        <span class="review-client">Rian Hidayat — Karyawan</span>
+                    </div>
+                </div>
+                <!-- Slide 4 -->
+                <div class="review-slide-node">
+                    <div class="review-bubble">
+                        <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p>"Tempat makannya bersih, porsinya pas untuk makan siang keluarga besar. Rekomendasi kuliner utama jika berkunjung ke Karawang."</p>
+                        <span class="review-client">Keluarga Wijaya — Karawang</span>
+                    </div>
+                </div>
+            </div>
+            <div class="review-controls">
+                <button class="nav-arrow" id="slide-left"><i class="fas fa-chevron-left"></i></button>
+                <div class="bullet-indicators"></div>
+                <button class="nav-arrow" id="slide-right"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. FAQ SECTION -->
+    <section id="faq" class="reveal">
+        <div class="section-header">
+            <span class="section-tag">Questions</span>
+            <h2 class="section-title">Pertanyaan Umum</h2>
+        </div>
+        <div class="faq-accordion-holder">
+            <div class="faq-node">
+                <div class="faq-trigger">
+                    <h3>Kapan jam operasional Ayam Bakar Kacalada?</h3>
+                    <i class="fas fa-chevron-down faq-chevron"></i>
+                </div>
+                <div class="faq-panel">
+                    <p>Kami melayani pelanggan setia setiap hari, buka mulai pukul 09.00 sampai dengan 23.00 WIB.</p>
+                </div>
+            </div>
+            <div class="faq-node">
+                <div class="faq-trigger">
+                    <h3>Di mana lokasi persis restoran Kacalada?</h3>
+                    <i class="fas fa-chevron-down faq-chevron"></i>
+                </div>
+                <div class="faq-panel">
+                    <p>Restoran kami beralamat lengkap di Jl. Cakradireja No.48, Karangpawitan, Karawang Barat, Kabupaten Karawang, Jawa Barat.</p>
+                </div>
+            </div>
+            <div class="faq-node">
+                <div class="faq-trigger">
+                    <h3>Apakah semua menu makanannya bercita rasa pedas?</h3>
+                    <i class="fas fa-chevron-down faq-chevron"></i>
+                </div>
+                <div class="faq-panel">
+                    <p>Tidak. Dasar rasa menu Ayam Bakar Kacalada cenderung dominan manis gurih tradisional yang aman dikonsumsi anak-anak. Sengatan pedas disajikan lewat Sambal Jeletot pendamping yang bisa disesuaikan.</p>
+                </div>
+            </div>
+            <div class="faq-node">
+                <div class="faq-trigger">
+                    <h3>Apakah bisa melayani delivery order dan takeaway?</h3>
+                    <i class="fas fa-chevron-down faq-chevron"></i>
+                </div>
+                <div class="faq-panel">
+                    <p>Tentu bisa. Anda dapat memesan hidangan untuk dibungkus bawa pulang secara langsung di kasir toko atau menggunakan pemesanan daring jarak jauh via WhatsApp kami.</p>
+                </div>
+            </div>
+            <div class="faq-node">
+                <div class="faq-trigger">
+                    <h3>Bagaimana melakukan reservasi meja untuk rombongan?</h3>
+                    <i class="fas fa-chevron-down faq-chevron"></i>
+                </div>
+                <div class="faq-panel">
+                    <p>Anda dapat mengamankan ketersediaan tempat acara keluarga dengan langsung menghubungi admin operasional kami via tautan chat tombol WhatsApp resmi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. LOKASI SECTION -->
+    <section id="location" class="reveal">
+        <div class="section-header">
+            <span class="section-tag">Map Direction</span>
+            <h2 class="section-title">Lokasi & Navigasi</h2>
+        </div>
+        <div class="location-block">
+            <div class="map-iframe-holder">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.7447472099393!2d107.2942475757271!3d-6.29724599369192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6977e5bc41b18d%3A0x6730cd90b39cc527!2sJl.%20Cakradireja%20No.48%2C%20Karangpawitan%2C%20Kec.%20Karawang%20Bar.%2C%20Karawang%2C%20Jawa%20Barat%2041315!5e0!3m2!1sid!2sid!4v1710000000000!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="location-details">
+                <h3>Kunjungi Rumah Makan Kami</h3>
+                <div class="address-item">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <p>Jl. Cakradireja No.48, Karangpawitan, Karawang Barat, Kabupaten Karawang, Jawa Barat 41315</p>
+                </div>
+                <div class="address-item">
+                    <i class="fas fa-clock"></i>
+                    <p>Setiap Hari: 09.00 – 23.00 WIB <br><span style="color: #25d366; font-size:0.85rem;"><i class="fas fa-circle" style="font-size:0.5rem; color:#25d366;"></i> Aktif Beroperasi</span></p>
+                </div>
+                <div class="location-action-btns">
+                    <a href="https://maps.google.com/?q=Jl.+Cakradireja+No.48,+Karangpawitan,+Karawang" target="_blank" class="btn btn-primary"><i class="fas fa-directions"></i> Open Maps</a>
+                    <a href="https://wa.me/6282114775399" target="_blank" class="btn btn-secondary"><i class="fab fa-whatsapp"></i> WhatsApp Order</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. KONTAK SECTION -->
+    <section id="contact" class="reveal">
+        <div class="section-header">
+            <span class="section-tag">Connect</span>
+            <h2 class="section-title">Hubungi Kami Lebih Lanjut</h2>
+        </div>
+        <div class="contact-row">
+            <div class="contact-box-card">
+                <i class="fab fa-whatsapp"></i>
+                <h3>WhatsApp Order</h3>
+                <p><a href="https://wa.me/6282114775399" target="_blank">+62 821-1477-5399</a></p>
+            </div>
+            <div class="contact-box-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Alamat Resto</h3>
+                <p>Karawang Barat, Kabupaten Karawang</p>
+            </div>
+            <div class="contact-box-card">
+                <i class="fas fa-history"></i>
+                <h3>Jam Kerja</h3>
+                <p>09.00 – 23.00 WIB<br>Setiap Hari Aktif</p>
+            </div>
+            <div class="contact-box-card">
+                <i class="fas fa-share-nodes"></i>
+                <h3>Media Sosial</h3>
+                <div class="social-dock">
+                    <a href="#" class="social-icon-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon-btn"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="social-icon-btn"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. FLOATING ACTION BUTTONS -->
+    <div class="floating-triggers">
+        <button class="fab-trigger fab-top" id="scrollTopTrigger" title="Ke atas"><i class="fas fa-arrow-up"></i></button>
+        <a href="https://wa.me/6282114775399" target="_blank" class="fab-trigger fab-wa" title="Order WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <!-- AI CHAT ASSISTANT COMPONENT -->
+    <div class="ai-chat-container">
+        <button class="ai-chat-bubble-btn" id="aiChatOpenBtn" title="Tanya AI Asisten"><i class="fas fa-robot"></i></button>
+        <div class="ai-chat-box" id="aiChatBox">
+            <div class="ai-chat-header">
+                <div class="ai-profile">
+                    <div class="ai-avatar"><i class="fas fa-fire"></i></div>
+                    <div class="ai-name">
+                        <h4>Kacalada AI Bot</h4>
+                        <span class="ai-status"><i class="fas fa-circle" style="font-size:0.5rem"></i> Online</span>
+                    </div>
+                </div>
+                <button class="ai-close-btn" id="aiChatCloseBtn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="ai-chat-messages" id="aiChatMessages">
+                <div class="chat-msg bot">Halo! Selamat datang di Ayam Bakar Kacalada. Ada yang bisa saya bantu terkait info menu, jam buka, lokasi, atau cara pemesanan?</div>
+            </div>
+            <div class="ai-chat-input-area">
+                <input type="text" id="aiChatInputField" placeholder="Tulis pertanyaan Anda di sini...">
+                <button class="ai-chat-send-btn" id="aiChatSendBtn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL POPUP FOR MENU -->
+    <div class="modal-overlay" id="menuModalOverlay">
+        <div class="modal-window">
+            <button class="modal-close-trigger" id="closeMenuModal"><i class="fas fa-times"></i></button>
+            <img src="" alt="" class="modal-img" id="modalImgNode">
+            <div class="modal-body">
+                <h3 class="modal-title" id="modalTitleNode">Nama Menu</h3>
+                <div class="modal-price" id="modalPriceNode">Rp0</div>
+                <p class="modal-desc" id="modalDescNode">Deskripsi singkat menu makanan.</p>
+                <a href="https://wa.me/6282114775399" target="_blank" class="btn btn-whatsapp" style="width:100%"><i class="fab fa-whatsapp"></i> Pesan Sekarang Via WhatsApp</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX OVERLAY FOR GALLERY -->
+    <div class="lightbox-overlay" id="galleryLightboxOverlay">
+        <img src="" alt="View" class="lightbox-img" id="lightboxImgNode">
+    </div>
+
+    <!-- 13. FOOTER -->
+    <footer>
+        <div class="footer-wrap">
+            <div class="logo">
+                <img src="logo ayam.jpg" alt="Logo Kacalada">
+                AYAM BAKAR <span>KACALADA</span>
+            </div>
+            <div class="footer-nav">
+                <a href="#home">Home</a>
+                <a href="#about">Tentang</a>
+                <a href="#menu">Menu</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#location">Lokasi</a>
+            </div>
+        </div>
+        <div class="footer-copy">
+            &copy; 2026 Ayam Bakar Kacalada. Professional Restaurant UI Portfolio Framework. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- ==================== CORE JAVASCRIPT SYSTEM ==================== -->
+    <script>
+        // --- 1. PRELOADER HANDLING ---
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('preloader');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+            }, 600);
+        });
+
+        // --- 2. HERO TYPING TEXT ANIMATION ---
+        const typeTarget = document.getElementById('type-target');
+        const typedStrings = ['KACALADA 🔥', 'MANIS PEDAS 🌶️', 'RASA JUARA 👑'];
+        let stringIdx = 0;
+        let charIdx = 0;
+        let deletingActive = false;
+
+        function runTypingCycle() {
+            const fullStr = typedStrings[stringIdx];
+            if (deletingActive) {
+                typeTarget.textContent = fullStr.substring(0, charIdx - 1);
+                charIdx--;
+            } else {
+                typeTarget.textContent = fullStr.substring(0, charIdx + 1);
+                charIdx++;
+            }
+
+            let typeDelay = deletingActive ? 40 : 100;
+
+            if (!deletingActive && charIdx === fullStr.length) {
+                typeDelay = 2000; 
+                deletingActive = true;
+            } else if (deletingActive && charIdx === 0) {
+                deletingActive = false;
+                stringIdx = (stringIdx + 1) % typedStrings.length;
+                typeDelay = 400; 
+            }
+            setTimeout(runTypingCycle, typeDelay);
+        }
+        document.addEventListener('DOMContentLoaded', () => setTimeout(runTypingCycle, 800));
+
+        // --- 3. STICKY NAVBAR & ACTIVE SECTION HIGHLIGHT ---
+        const navbarNode = document.querySelector('.navbar');
+        const sectionNodes = document.querySelectorAll('section');
+        const navLinkNodes = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                navbarNode.classList.add('scrolled');
+            } else {
+                navbarNode.classList.remove('scrolled');
+            }
+
+            let activeId = '';
+            sectionNodes.forEach(sec => {
+                const secTop = sec.offsetTop;
+                if (window.scrollY >= (secTop - 150)) {
+                    activeId = sec.getAttribute('id');
+                }
+            });
+
+            navLinkNodes.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(activeId)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // --- 4. MOBILE BURGER NAVIGATION TOGGLE ---
+        const burgerBtn = document.querySelector('.hamburger');
+        const menuList = document.querySelector('.nav-menu');
+
+        burgerBtn.addEventListener('click', () => {
+            menuList.classList.toggle('open');
+            const iconNode = burgerBtn.querySelector('i');
+            iconNode.classList.toggle('fa-bars');
+            iconNode.classList.toggle('fa-times');
+        });
+
+        navLinkNodes.forEach(l => l.addEventListener('click', () => {
+            menuList.classList.remove('open');
+            burgerBtn.querySelector('i').className = 'fas fa-bars';
+        }));
+
+        // --- 5. ANIMATED INCREMENTAL COUNTERS (ABOUT SECTION) ---
+        const counterCards = document.querySelectorAll('.counter-number');
+        let triggeredCounters = false;
+
+        function triggerCounters() {
+            counterCards.forEach(c => {
+                const targetVal = parseFloat(c.getAttribute('data-target'));
+                const isFloat = targetVal % 1 !== 0;
+                let currentVal = 0;
+                const increment = targetVal / 40;
+
+                const timer = setInterval(() => {
+                    currentVal += increment;
+                    if (currentVal >= targetVal) {
+                        c.textContent = isFloat ? targetVal.toFixed(1) : Math.floor(targetVal);
+                        clearInterval(timer);
+                    } else {
+                        c.textContent = isFloat ? currentVal.toFixed(1) : Math.floor(currentVal);
+                    }
+                }, 25);
+            });
+        }
+
+        // --- 6. SCROLL REVEAL TRIGGERS ---
+        const revealNodes = document.querySelectorAll('.reveal');
+        const scrollListener = () => {
+            revealNodes.forEach(n => {
+                const nodeTop = n.getBoundingClientRect().top;
+                if (nodeTop < window.innerHeight - 80) {
+                    n.classList.add('active');
+                    if (n.getAttribute('id') === 'about' && !triggeredCounters) {
+                        triggeredCounters = true;
+                        triggerCounters();
+                    }
+                }
+            });
+
+            // Handle Scroll To Top visibility
+            const topBtn = document.getElementById('scrollTopTrigger');
+            if (window.scrollY > 400) topBtn.classList.add('visible');
+            else topBtn.classList.remove('visible');
+        };
+        window.addEventListener('scroll', scrollListener);
+        window.addEventListener('load', scrollListener);
+
+        document.getElementById('scrollTopTrigger').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // --- 7. MENU CARD MODAL SYSTEM ---
+        const menuCards = document.querySelectorAll('.menu-card');
+        const menuModal = document.getElementById('menuModalOverlay');
+        const closeMenuModalBtn = document.getElementById('closeMenuModal');
+
+        menuCards.forEach(card => {
+            card.addEventListener('click', () => {
+                document.getElementById('modalImgNode').src = card.getAttribute('data-img');
+                document.getElementById('modalTitleNode').textContent = card.getAttribute('data-title');
+                document.getElementById('modalPriceNode').textContent = card.getAttribute('data-price');
+                document.getElementById('modalDescNode').textContent = card.getAttribute('data-desc');
+                menuModal.classList.add('open');
+            });
+        });
+
+        closeMenuModalBtn.addEventListener('click', () => menuModal.classList.remove('open'));
+        menuModal.addEventListener('click', (e) => { if(e.target === menuModal) menuModal.classList.remove('open'); });
+
+        // --- 8. GALLERY LIGHTBOX POPUP ---
+        const galCards = document.querySelectorAll('.gallery-card');
+        const galLightbox = document.getElementById('galleryLightboxOverlay');
+        const lightboxImgNode = document.getElementById('lightboxImgNode');
+
+        galCards.forEach(card => {
+            card.addEventListener('click', () => {
+                lightboxImgNode.src = card.querySelector('img').src;
+                galLightbox.classList.add('open');
+            });
+        });
+        galLightbox.addEventListener('click', () => galLightbox.classList.remove('open'));
+
+        // --- 9. REVIEWS CAROUSEL SLIDER ---
+        const track = document.querySelector('.review-slider-track');
+        const slides = document.querySelectorAll('.review-slide-node');
+        const leftArrow = document.getElementById('slide-left');
+        const rightArrow = document.getElementById('slide-right');
+        const dotsDock = document.querySelector('.bullet-indicators');
+        let currentSlideIdx = 0;
+
+        slides.forEach((_, index) => {
+            const b = document.createElement('div');
+            b.className = `bullet ${index === 0 ? 'active' : ''}`;
+            b.addEventListener('click', () => shiftSlide(index));
+            dotsDock.appendChild(b);
+        });
+
+        function shiftSlide(targetIdx) {
+            currentSlideIdx = (targetIdx + slides.length) % slides.length;
+            track.style.transform = `translateX(-${currentSlideIdx * 100}%)`;
+            document.querySelectorAll('.bullet').forEach((b, i) => b.classList.toggle('active', i === currentSlideIdx));
+        }
+
+        rightArrow.addEventListener('click', () => shiftSlide(currentSlideIdx + 1));
+        leftArrow.addEventListener('click', () => shiftSlide(currentSlideIdx - 1));
+        setInterval(() => shiftSlide(currentSlideIdx + 1), 6000); // Auto slider 6 detik
+
+        // --- 10. ACCORDION LOGIC FOR FAQ ---
+        const faqTriggers = document.querySelectorAll('.faq-trigger');
+        faqTriggers.forEach(t => {
+            t.addEventListener('click', () => {
+                const node = t.parentElement;
+                const panel = node.querySelector('.faq-panel');
+                const isOpen = node.classList.contains('open');
+
+                document.querySelectorAll('.faq-node').forEach(n => {
+                    n.classList.remove('open');
+                    n.querySelector('.faq-panel').style.maxHeight = '0';
+                });
+
+                if(!isOpen) {
+                    node.classList.add('open');
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        });
+
+        // --- 11. INTERAKTIF RULE-BASED AI CHAT SYSTEM ---
+        const chatOpenBtn = document.getElementById('aiChatOpenBtn');
+        const chatCloseBtn = document.getElementById('aiChatCloseBtn');
+        const chatBox = document.getElementById('aiChatBox');
+        const chatSendBtn = document.getElementById('aiChatSendBtn');
+        const chatInput = document.getElementById('aiChatInputField');
+        const chatMessagesNode = document.getElementById('aiChatMessages');
+
+        chatOpenBtn.addEventListener('click', () => chatBox.classList.toggle('active'));
+        chatCloseBtn.addEventListener('click', () => chatBox.classList.remove('active'));
+
+        function postMessage(text, side) {
+            const msg = document.createElement('div');
+            msg.className = `chat-msg ${side}`;
+            msg.textContent = text;
+            chatMessagesNode.appendChild(msg);
+            chatMessagesNode.scrollTop = chatMessagesNode.scrollHeight;
+        }
+
+        function processingAiAnswer(userText) {
+            const cleanText = userText.toLowerCase();
+            let reply = "Maaf, saya belum mengerti pertanyaan Anda. Silakan tanyakan hal lain seperti lokasi, menu, jam buka, atau cara pemesanan, atau klik tombol WhatsApp untuk langsung terhubung dengan admin kami.";
+
+            if (cleanText.includes('jam') || cleanText.includes('buka') || cleanText.includes('operasional')) {
+                reply = "Jam buka Ayam Bakar Kacalada adalah pukul 09.00 – 23.00 WIB setiap harinya.";
+            } else if (cleanText.includes('lokasi') || cleanText.includes('alamat') || cleanText.includes('di mana') || cleanText.includes('karawang')) {
+                reply = "Lokasi kami berada di Jl. Cakradireja No.48, Karangpawitan, Karawang Barat, Kabupaten Karawang.";
+            } else if (cleanText.includes('menu') || cleanText.includes('makan') || cleanText.includes('geprek') || cleanText.includes('rasa')) {
+                reply = "Kami memiliki 2 menu utama unggulan: Ayam Bakar Kacalada (Rp24.000) dan Ayam Geprek Sambal Jeletot (Rp20.000).";
+            } else if (cleanText.includes('harga') || cleanText.includes('murah') || cleanText.includes('berapa')) {
+                reply = "Harga menu hidangan di Ayam Bakar Kacalada sangat terjangkau, berkisar antara Rp2.000 hingga Rp32.000 saja.";
+            } else if (cleanText.includes('pesan') || cleanText.includes('order') || cleanText.includes('whatsapp') || cleanText.includes('wa') || cleanText.includes('cara')) {
+                reply = "Untuk pemesanan jarak jauh atau reservasi tempat, silakan klik tombol WhatsApp hijau di layar untuk langsung terhubung ke nomor +62 821-1477-5399.";
+            } else if (cleanText.includes('delivery') || cleanText.includes('takeaway') || cleanText.includes('bungkus')) {
+                reply = "Kami melayani pembelian takeaway langsung di outlet maupun layanan delivery order via koordinasi obrolan WhatsApp.";
+            }
+
+            setTimeout(() => {
+                postMessage(reply, 'bot');
+            }, 600);
+        }
+
+        function handleUserSend() {
+            const txt = chatInput.value.trim();
+            if(!txt) return;
+            postMessage(txt, 'user');
+            chatInput.value = '';
+            processingAiAnswer(txt);
+        }
+
+        chatSendBtn.addEventListener('click', handleUserSend);
+        chatInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') handleUserSend(); });
+    </script>
+</body>
+</html>
